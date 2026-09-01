@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple assignment tracker that saves your work locally.">
+  <title>Assignment Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">✓</span>
+        <div>
+          <h1>Assignment Tracker</h1>
+          <p>Keep your schoolwork organized</p>
+        </div>
+      </div>
+      <span class="upcoming-badge"><strong id="header-count">0</strong> upcoming</span>
+    </div>
+  </header>
+
+  <main class="app-layout">
+    <aside class="sidebar">
+      <section class="card">
+        <div class="section-heading">
+          <h2 id="form-heading">Add assignment</h2>
+          <button id="cancel-edit" class="icon-button hidden" type="button" aria-label="Cancel editing">×</button>
+        </div>
+        <form id="assignment-form">
+          <label for="assignment-name">Assignment name</label>
+          <input id="assignment-name" type="text" placeholder="e.g. Chapter 4 quiz" maxlength="80" required>
+
+          <label for="assignment-class">Class</label>
+          <select id="assignment-class" required></select>
+
+          <label for="due-date">Due date</label>
+          <input id="due-date" type="date" required>
+
+          <button class="primary-button" type="submit"><span aria-hidden="true">＋</span><span id="submit-label">Add assignment</span></button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="section-heading">
+          <h2>My classes</h2>
+          <button id="toggle-class-form" class="icon-button" type="button" aria-label="Add a class">＋</button>
+        </div>
+        <form id="class-form" class="inline-form hidden">
+          <input id="class-name" type="text" placeholder="Class name" maxlength="40" aria-label="New class name" required>
+          <button class="small-button" type="submit" aria-label="Save class">✓</button>
+        </form>
+        <div id="class-list" class="class-list"></div>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <p id="today" class="today"></p>
+      <h2 class="page-title">Your assignments</h2>
+
+      <div class="stats" aria-label="Assignment summary">
+        <article><span>Upcoming</span><strong id="upcoming-count">0</strong></article>
+        <article><span>Completed</span><strong id="completed-count">0</strong></article>
+        <article><span>Classes</span><strong id="class-count">0</strong></article>
+      </div>
+
+      <section class="assignment-section">
+        <h3>Upcoming</h3>
+        <div id="empty-state" class="empty-state">
+          <span aria-hidden="true">✓</span>
+          <strong>Nothing due right now</strong>
+          <p>Add an assignment when you get one.</p>
+        </div>
+        <div id="upcoming-list" class="assignment-list"></div>
+      </section>
+
+      <section id="completed-section" class="assignment-section hidden">
+        <div class="list-heading">
+          <h3>Completed</h3>
+          <button id="clear-completed" class="text-button" type="button">Clear completed</button>
+        </div>
+        <div id="completed-list" class="assignment-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <template id="assignment-template">
+    <article class="assignment-item">
+      <button class="complete-button" type="button"></button>
+      <div class="assignment-info">
+        <strong class="assignment-title"></strong>
+        <span class="assignment-class"></span>
+      </div>
+      <time class="assignment-date"></time>
+      <button class="edit-button icon-button" type="button" aria-label="Edit assignment">✎</button>
+      <button class="delete-button icon-button danger" type="button" aria-label="Delete assignment">×</button>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
